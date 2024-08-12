@@ -12,5 +12,5 @@ Backend project using Django Python framework with MongoDB database
     <ul>
         <li?>mkdir projectName</li>
         <li>cd projectName</li>
-        <li>Start your project with the following command: django-admin startproject <<pojectName>></li>
+        <li>Start your project with the following command: django-admin startproject "<<pojectName>>"</li>
     </ul>
