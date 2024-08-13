@@ -13,3 +13,13 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+
+
+class Account(models.Model):
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    balance = models.TextField()
+    created_at = models.TextField()
+    objects = models.DjongoManager()
+
+    def __str__(self):
+        return self.username
