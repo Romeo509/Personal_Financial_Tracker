@@ -6,6 +6,8 @@ import 'mainPages/AccountPage.dart';
 import 'mainPages/HomePage.dart';
 import 'mainPages/transactionsPage.dart';
 import 'mainPages/upcomingTransactionsPage.dart';
+import 'authPages/SignIn.dart';
+import 'authPages/SignUp.dart'; // Import SignUp
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +16,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: HomeNavigationPage(0),
+      home: SignIn(),
     );
   }
 }

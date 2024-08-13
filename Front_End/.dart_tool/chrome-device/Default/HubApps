@@ -1,101 +1,6 @@
 {
    "current_locale": "en-US",
    "hub_apps": [ {
-      "auto_open_v2": [ {
-         "approved_channels": [ "canary", "dev", "beta", "stable" ],
-         "enabled": false,
-         "enabled|flight:msEdgeChatPersistentChatAutoShow|flight:msEdgeChatAutoOpenUseV2Framework": true,
-         "footer": {
-            "open_count": 10,
-            "text": "We opened the side pane so you can continue your conversation here"
-         },
-         "force_auto_open": false,
-         "id": "8d3a928d-e911-40f0-9852-f63f6434dc7e",
-         "lifetime": "tab",
-         "non_visible_user_friendly_name": "Underside Persistent Chat Link",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "When a link is opened from Copilot on the web, the side pane will automatically open to continue the conversation",
-            "title": "Automatically open Copilot in the side pane to continue conversations"
-         },
-         "supported_platforms": [ "win", "mac", "linux" ],
-         "triggering_config": {
-            "signal_name": "IsUndersidePersistentChatLink",
-            "signal_threshold": 0.5
-         }
-      }, {
-         "approved_channels": [ "canary", "dev", "beta", "stable" ],
-         "enabled": false,
-         "enabled|flight:msEdgeChatPDFAutoShow|flight:msEdgeChatAutoOpenUseV2Framework": true,
-         "fallback_notification": {
-            "location": "omnibox",
-            "show_count": 3,
-            "text": "Get PDF insights"
-         },
-         "footer": {
-            "open_count": 10,
-            "text": "We launched Copilot to assist you with your PDF"
-         },
-         "force_auto_open": false,
-         "id": "e06e75c1-a59a-4ab6-8361-e8b038e00a8c",
-         "lifetime|flight:msHubAppsPDFAutoOpenPerTab": "tab",
-         "non_visible_user_friendly_name": "Underside PDF Chat Link",
-         "red_dot_notification_data": {
-            "footer": {
-               "enabled": false
-            }
-         },
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "When a PDF is opened in Microsoft Edge, the side pane will automatically open to assist you with your PDF",
-            "title": "Automatically open Copilot in the side pane for PDFs"
-         },
-         "supported_platforms": [ "win", "mac", "linux" ]
-      }, {
-         "approved_channels": [ "canary", "dev", "beta", "stable" ],
-         "enabled": false,
-         "enabled|flight:msEdgeChatAutoOpenUseV2Framework": true,
-         "footer": {
-            "open_count": 10,
-            "text": "We opened Copilot to provide you with detailed information on common questions from other users."
-         },
-         "force_auto_open": false,
-         "id": "5b853177-a0be-4237-bda0-4fce5cd165c2",
-         "non_visible_user_friendly_name": "PAA Auto Open",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "When you interact with Microsoft Bing's \"People also ask\" section, the side pane will automatically open to provide you with detailed information on common questions from other users.",
-            "title": "Automatically open Copilot in the side pane when you interact with Microsoft Bing's \"People also ask\"."
-         },
-         "supported_platforms": [ "win", "mac", "linux" ]
-      } ],
-      "auto_show": {
-         "enabled": true,
-         "enabled|flight:msEdgeChatPDFAutoShow|flight:msEdgeChatAutoOpenUseV2Framework": false,
-         "fre_notification": {
-            "enabled": true,
-            "header": "Was opening this pane helpful to you?",
-            "show_count": 2,
-            "text": "Was opening this pane helpful to you?"
-         },
-         "settings_description": "We'll automatically open Copilot in the sidebar to show you relevant web experiences alongside your web content",
-         "settings_title": "Automatically open Copilot in the sidebar",
-         "triggering_configs|flight:msHubAppsMsnArticleAutoShowTriggering": [ {
-            "show_count_basis": "signal",
-            "signal_name": "IsMsnArticleAutoOpenFromP1P2",
-            "signal_threshold": 0.5
-         } ],
-         "triggering_configs|flight:msUndersidePersistentChat": [ {
-            "signal_name": "IsUndersidePersistentChatLink",
-            "signal_threshold": 0.5
-         } ]
-      },
       "capabilities": {
          "deprecated_hide_header": true
       },
@@ -114,9 +19,16 @@
       "description": "Contextually relevant info for any page",
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_blue.png/1.3.13/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_hc.png/1.3.13/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_blue.png/1.3.13/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_blue.png/1.3.15/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_hc.png/1.3.15/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_blue.png/1.3.15/asset"
+         }
+      },
+      "icon|flight:msEdgeUndersideV2": {
+         "raster_icon": {
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_rainbow.png/1.3.15/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_hc.png/1.3.15/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_copilot_rainbow.png/1.3.15/asset"
          }
       },
       "id": "cd4688a9-e888-48ea-ad81-76193d56b1be",
@@ -188,74 +100,8 @@
       "target": {
          "command": "discover_chat"
       },
-      "version": "1.3.13"
+      "version": "1.3.15"
    }, {
-      "auto_open_v2": [ {
-         "approved_channels": [ "canary", "dev", "beta", "stable" ],
-         "enabled": false,
-         "enabled|locale:zh_CN|flight:msUpsellBingAtSidebar": true,
-         "footer": {
-            "open_count": 10,
-            "text": "Open to show you additional search results, was this helpful?"
-         },
-         "id": "93e5b5cd-15fc-4253-9728-d80685da304e",
-         "lifetime": "tab",
-         "non_visible_user_friendly_name": "Upsell Bing At Shoreline Search In CN",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "We'll automatically open the Search pane to show you relevant content while you search",
-            "title": "Automatically open Search"
-         },
-         "triggering_config": {
-            "min_sec_between_auto_open": 86400,
-            "open_count_basis": "signal",
-            "signal_name": "IsAutoOpenSidebarSearchQuery",
-            "signal_threshold": 0.5
-         }
-      }, {
-         "approved_channels": [ "canary", "dev", "beta", "stable" ],
-         "enabled": false,
-         "enabled|flight:msEnhancedWindowsSearch": true,
-         "footer": {
-            "open_count": 10,
-            "text": "Continue exploring additional search results as you browse."
-         },
-         "id": "3662f1e2-66ae-464f-b690-e7e3dc4fc662",
-         "lifetime": "tab",
-         "non_visible_user_friendly_name": "Enhanced Windows Search",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "We'll automatically open the Search pane to show you relevant content while you search",
-            "title": "Automatically open Search App from Windows Search Box"
-         }
-      } ],
-      "auto_show": {
-         "enabled": true,
-         "enabled|locale:zh_CN|flight:msUpsellBingAtSidebar": false,
-         "fre_notification": {
-            "enabled": true,
-            "header": "Search auto-open to show you additional search results. Was this helpful?",
-            "show_count": 1,
-            "show_count|flight:msGoogleSBS": 5,
-            "text": "Search auto-open to show you additional search results. Was this helpful?"
-         },
-         "fre_notification|locale:zh_CN|flight:msUpsellBingAtSidebar": {
-            "enabled": true,
-            "header": "Open to show you additional search results, was this helpful?",
-            "show_count": 5,
-            "text": "Open to show you additional search results, was this helpful?"
-         },
-         "settings_description": "We'll automatically open the Search pane to show you relevant content while you search",
-         "settings_title": "Automatically open Search",
-         "triggering_configs|locale:zh_CN|flight:msUpsellBingAtSidebar": [ {
-            "signal_name": "IsAutoOpenSidebarSearchQuery",
-            "signal_threshold": 0.5
-         } ]
-      },
       "capabilities": {
          "deprecated_hide_header": true
       },
@@ -263,9 +109,9 @@
       "description": "Search without losing your place",
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_search_maximal_dark.png/1.3.19/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_search_hc.png/1.3.19/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_search_maximal_light.png/1.3.19/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_search_maximal_dark.png/1.3.20/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_search_hc.png/1.3.20/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_search_maximal_light.png/1.3.20/asset"
          }
       },
       "id": "8ac719c5-140b-4bf2-a0b7-c71617f1f377",
@@ -285,7 +131,7 @@
       "target": {
          "command": "search"
       },
-      "version": "1.3.19"
+      "version": "1.3.20"
    }, {
       "capabilities": {
          "deprecated_hide_header": true
@@ -358,9 +204,9 @@
          },
          "icon": {
             "raster_icon": {
-               "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_dark.png/1.5.5/asset",
-               "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_hc.png/1.5.5/asset",
-               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_light.png/1.5.5/asset"
+               "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_dark.png/1.5.6/asset",
+               "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_hc.png/1.5.6/asset",
+               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_light.png/1.5.6/asset"
             }
          },
          "location": "header_context_menu",
@@ -373,9 +219,9 @@
          },
          "icon": {
             "raster_icon": {
-               "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_dark.png/1.5.5/asset",
-               "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_hc.png/1.5.5/asset",
-               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_light.png/1.5.5/asset"
+               "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_dark.png/1.5.6/asset",
+               "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_hc.png/1.5.6/asset",
+               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_settings_light.png/1.5.6/asset"
             }
          },
          "location": "header_context_menu",
@@ -393,11 +239,13 @@
       } ],
       "default_locale": "en",
       "description": "Coupons, compare savings and save money while you shop",
+      "disabled": false,
+      "disabled|flight:msEdgeHubAppDisableShopping": true,
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_shopping_maximal_dark.png/1.5.5/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_shopping_hc.png/1.5.5/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_shopping_maximal_light.png/1.5.5/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_shopping_maximal_dark.png/1.5.6/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_shopping_hc.png/1.5.6/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_shopping_maximal_light.png/1.5.6/asset"
          }
       },
       "id": "523b5ef3-0b10-4154-8b62-10b2ebd00921",
@@ -420,7 +268,7 @@
       "target": {
          "url": "edge://shopping"
       },
-      "version": "1.5.5"
+      "version": "1.5.6"
    }, {
       "capabilities": {
          "resize_disabled": true
@@ -480,104 +328,6 @@
       },
       "version": "1.5.17"
    }, {
-      "auto_open_v2": [ {
-         "approved_channels": [ "canary", "dev" ],
-         "enabled": false,
-         "enabled|flight:msHubAppsGamesAutoOpenV2|flight:msHubAppsGamesAutoShowWGI": true,
-         "footer": {
-            "open_count": 10,
-            "text": "Was opening this pane helpful to you?"
-         },
-         "force_auto_open": false,
-         "id": "128c39c6-6f70-4ce5-9d01-78978e60d666",
-         "lifetime": "tab",
-         "non_visible_user_friendly_name": "Top WGI Games",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "Allows links from different Windows OS surfaces to open Casual Games in the sidepane when Microsoft Edge is launched.",
-            "title": "Automatically open Casual Games in the side pane"
-         },
-         "triggering_config": {
-            "max_open_count": 3,
-            "min_sec_between_auto_open": 86400,
-            "open_count_basis": "signal",
-            "signal_name": "IsTopWgiGames",
-            "signal_threshold": 0.5
-         }
-      }, {
-         "approved_channels": [ "canary", "dev" ],
-         "enabled": false,
-         "enabled|flight:msHubAppsGamesAutoOpenV2|flight:msHubAppsGamesAutoShowTriggering": true,
-         "footer": {
-            "open_count": 10,
-            "text": "Was opening this pane helpful to you?"
-         },
-         "force_auto_open": false,
-         "id": "0bdde3c3-7be8-49f1-971b-e6e2cfd62643",
-         "lifetime": "tab",
-         "non_visible_user_friendly_name": "Top Games Sites",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "Allows links from different Windows OS surfaces to open Casual Games in the sidepane when Microsoft Edge is launched.",
-            "title": "Automatically open Casual Games in the side pane"
-         },
-         "triggering_config": {
-            "max_open_count": 3,
-            "min_sec_between_auto_open": 86400,
-            "open_count_basis": "signal",
-            "signal_name": "IsGamesShorelineAutoShow",
-            "signal_threshold": 0.5
-         }
-      }, {
-         "approved_channels": [ "canary", "dev" ],
-         "enabled": false,
-         "enabled|flight:msHubAppsGamesAutoOpenV2": true,
-         "footer": {
-            "open_count": 10,
-            "text": "Was opening this pane helpful to you?"
-         },
-         "force_auto_open": false,
-         "id": "5ac63306-e962-42e6-8313-7e5a5b707d65",
-         "lifetime": "tab",
-         "non_visible_user_friendly_name": "Games Prong 2 Auto Open",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_toggle": {
-            "description": "Allows links from different Windows OS surfaces to open Casual Games in the sidepane when Microsoft Edge is launched.",
-            "title": "Automatically open Casual Games in the side pane"
-         }
-      } ],
-      "auto_show": {
-         "enabled": true,
-         "enabled|flight:msHubAppsGamesAutoOpenV2": false,
-         "fre_notification": {
-            "enabled": false,
-            "header": "Was opening this pane helpful to you?",
-            "text": "Was opening this pane helpful to you?"
-         },
-         "lifetime": "tab",
-         "settings_description": "Allows links from different Windows OS surfaces to open Casual Games in the sidepane when Microsoft Edge is launched.",
-         "settings_title": "Automatically open Casual Games in the side pane",
-         "triggering_configs|flight:msHubAppsGamesAutoShowTriggering": [ {
-            "max_show_count": 3,
-            "min_sec_between_auto_show": 86400,
-            "show_count_basis": "signal",
-            "signal_name": "IsGamesShorelineAutoShow",
-            "signal_threshold": 0.5
-         } ],
-         "triggering_configs|flight:msHubAppsGamesAutoShowWGI": [ {
-            "max_show_count": 3,
-            "min_sec_between_auto_show": 86400,
-            "show_count_basis": "signal",
-            "signal_name": "IsTopWgiGames",
-            "signal_threshold": 0.5
-         } ]
-      },
       "capabilities": {
          "resize_disabled": true
       },
@@ -602,29 +352,29 @@
       "description": "Play popular games for free",
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark.png/1.7.15/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc.png/1.7.15/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light.png/1.7.15/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark.png/1.7.16/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc.png/1.7.16/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light.png/1.7.16/asset"
          },
          "raster_icon|flight:msEdgeHubAppGamesNewIconCard": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_card.png/1.7.15/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_card.png/1.7.15/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_card.png/1.7.15/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_card.png/1.7.16/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_card.png/1.7.16/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_card.png/1.7.16/asset"
          },
          "raster_icon|flight:msEdgeHubAppGamesNewIconController": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_controller.png/1.7.15/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_controller.png/1.7.15/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_controller.png/1.7.15/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_controller.png/1.7.16/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_controller.png/1.7.16/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_controller.png/1.7.16/asset"
          },
          "raster_icon|flight:msEdgeHubAppGamesNewIconJoystick": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_joystick.png/1.7.15/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_joystick.png/1.7.15/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_joystick.png/1.7.15/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_joystick.png/1.7.16/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_joystick.png/1.7.16/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_joystick.png/1.7.16/asset"
          },
          "raster_icon|flight:msEdgeHubAppGamesNewIconPuzzle": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_puzzle.png/1.7.15/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_puzzle.png/1.7.15/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_puzzle.png/1.7.15/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_dark_puzzle.png/1.7.16/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_hc_puzzle.png/1.7.16/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_games_maximal_light_puzzle.png/1.7.16/asset"
          }
       },
       "id": "96defd79-4015-4a32-bd09-794ff72183ef",
@@ -690,18 +440,8 @@
          "url|locale:zh_CN|flight:msEdgeHubAppGamesNewIconPuzzle": "https://www.msn.cn/widgets/fullpage/cgSideBar/widget?experiences=CasualGamesHub&sharedHeader=1&ocid=iconPuzzle",
          "url|locale:zh_CN|flight:msEdgeHubAppUseCGSideBar": "https://www.msn.cn/widgets/fullpage/cgSideBar/widget?experiences=CasualGamesHub&sharedHeader=1"
       },
-      "version": "1.7.15"
+      "version": "1.7.16"
    }, {
-      "auto_show": {
-         "enabled": true,
-         "fre_notification": {
-            "enabled": false,
-            "header": "Was opening this pane helpful to you?",
-            "text": "Was opening this pane helpful to you?"
-         },
-         "settings_description": "Allows links from different Windows OS surfaces to open Office in the sidepane when Microsoft Edge is launched.",
-         "settings_title": "Automatically open Office in the side pane"
-      },
       "custom_actions": [ {
          "action": {
             "target": "new_tab",
@@ -710,7 +450,7 @@
          },
          "icon": {
             "raster_icon": {
-               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_word.png/1.7.40/asset"
+               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_word.png/1.7.41/asset"
             }
          },
          "location": "hovercard",
@@ -723,7 +463,7 @@
          },
          "icon": {
             "raster_icon": {
-               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_excel.png/1.7.40/asset"
+               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_excel.png/1.7.41/asset"
             }
          },
          "location": "hovercard",
@@ -736,7 +476,7 @@
          },
          "icon": {
             "raster_icon": {
-               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_power_point.png/1.7.40/asset"
+               "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_power_point.png/1.7.41/asset"
             }
          },
          "location": "hovercard",
@@ -759,9 +499,9 @@
       "description": "Access Microsoft 365 apps for free",
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_M365_dark.png/1.7.40/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_M365_hc.png/1.7.40/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_M365_light.png/1.7.40/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_M365_dark.png/1.7.41/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_M365_hc.png/1.7.41/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_M365_light.png/1.7.41/asset"
          }
       },
       "id": "64be4f9b-3b81-4b6e-b354-0ba00d6ba485",
@@ -784,7 +524,7 @@
          "url|flight:msEdgeHubAppOfficeCom": "https://www.office.com",
          "url|flight:msEdgeHubAppOfficePlusChina|market:CN": "https://www.officeplus.cn/?source=Edgeshoreline&origin=Edgeshoreline&sid=Edgeshoreline"
       },
-      "version": "1.7.40"
+      "version": "1.7.41"
    }, {
       "auto_open_v2": [ {
          "approved_channels": [ "canary", "dev", "beta", "stable" ],
@@ -1090,14 +830,6 @@
       },
       "version": "1.4.13"
    }, {
-      "auto_show": {
-         "enabled": true,
-         "fre_notification": {
-            "header": "We have automatically opened Designer for an enhanced contextual experience."
-         },
-         "settings_description": "When user gets suggestions from Designer, the side pane will automatically open to show suggestions.",
-         "settings_title": "Automatically open Designer in the side pane"
-      },
       "capabilities": {
          "enable_force_dark_mode": true
       },
@@ -1107,9 +839,9 @@
       "disabled|device:managed": false,
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_designer_color.png/1.0.23/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_designer_hc.png/1.0.23/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_designer_color.png/1.0.23/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_designer_color.png/1.0.24/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_designer_hc.png/1.0.24/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_designer_color.png/1.0.24/asset"
          }
       },
       "id": "2cb2db96-3bd0-403e-abe2-9269b3761041",
@@ -1131,7 +863,7 @@
       "target": {
          "url": "edge://designer/"
       },
-      "version": "1.0.23"
+      "version": "1.0.24"
    }, {
       "capabilities": {
          "show_domain_in_header": true
@@ -1746,17 +1478,6 @@
       "trusted_domains": [ "accounts.google.com" ],
       "version": "1.4.14"
    }, {
-      "auto_show": {
-         "enabled": true,
-         "fre_notification": {
-            "enabled": true,
-            "header": "We opened the side pane so you can continue your conversation here",
-            "show_count": 3,
-            "text": "We opened the side pane so you can continue your conversation here"
-         },
-         "settings_description": "When you open a link from a chat in Skype, the side pane will automatically open to show the chat for context.",
-         "settings_title": "Automatically open Skype chat links in the side pane"
-      },
       "capabilities": {
          "show_domain_in_header": true
       },
@@ -1777,9 +1498,9 @@
       "disabled|device:xbox": true,
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_dark.png/1.5.26/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_hc.png/1.5.26/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_light.png/1.5.26/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_dark.png/1.5.27/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_hc.png/1.5.27/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_skype_light.png/1.5.27/asset"
          }
       },
       "id": "439642fc-998d-4a64-8bb6-940ecaf6b60b",
@@ -1803,7 +1524,7 @@
          "url|flight:msEdgeHubAppSkypeCanary": "https://web.skype.com/?browsername=edge_canary_shoreline"
       },
       "trusted_domains": [ "live.com", "office.com", "microsoftonline.com", "microsoft.com", "office365.com", "sharepoint-df.com", "skype.com" ],
-      "version": "1.5.26"
+      "version": "1.5.27"
    }, {
       "default_locale": "en",
       "description": "Improve browser performance and save battery",
@@ -2024,43 +1745,6 @@
       },
       "version": "1.0.0"
    }, {
-      "auto_open_v2": [ {
-         "approved_channels": [ "canary", "dev" ],
-         "enabled": false,
-         "enabled|flight:msHubAppGameViewAutoOpenV2": true,
-         "footer": {
-            "open_count": 10,
-            "text": "Discover tips and guides while you play"
-         },
-         "force_auto_open": false,
-         "id": "2cfab14c-ebd6-4548-9401-30ab5afe5061",
-         "non_visible_user_friendly_name": "Game View Protocol Launch",
-         "red_dot_notification_data": {
-            "lifetime": "window"
-         },
-         "red_dot_notification_data|flight:msHubAppGameViewEnableCustomRedDotFooter": {
-            "footer": {
-               "description": "Discover tips and guides while you play"
-            },
-            "lifetime": "window"
-         },
-         "settings_toggle": {
-            "description": "When you switch to Microsoft Edge while playing a supported PC game, Game view will automatically open to show tips, guides, and other helpful content.",
-            "title": "Automatically open Game view when switching from a PC game to Microsoft Edge"
-         },
-         "throttle_duration_seconds": 86400
-      } ],
-      "auto_show": {
-         "enabled": true,
-         "enabled|flight:msHubAppGameViewAutoOpenV2": false,
-         "fre_notification": {
-            "enabled": true,
-            "header": "Discover tips and guides while you play",
-            "show_count": 3
-         },
-         "settings_description": "When you switch to Microsoft Edge while playing a supported PC game, Game view will automatically open to show tips, guides, and other helpful content.",
-         "settings_title": "Automatically open Game view when switching from a PC game to Microsoft Edge"
-      },
       "capabilities": {
          "hide_navigation_buttons": true,
          "resize_disabled": true
@@ -2070,9 +1754,9 @@
       "flights": [ "msEdgeHubAppGameView" ],
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_controller_maximal_dark.png/1.0.10/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_controller_hc.png/1.0.10/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_controller_maximal_light.png/1.0.10/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_controller_maximal_dark.png/1.0.11/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_controller_hc.png/1.0.11/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_controller_maximal_light.png/1.0.11/asset"
          }
       },
       "id": "c8ebd871-9f47-4a0d-abd3-c1c02b4f8f53",
@@ -2094,7 +1778,7 @@
       "target": {
          "url": "https://www.msn.com/widgets/fullpage/gaming/widget?experiences=GamingChannel"
       },
-      "version": "1.0.10"
+      "version": "1.0.11"
    }, {
       "auto_open_v2": [ {
          "approved_channels": [ "canary", "dev", "beta", "stable" ],
@@ -2195,22 +1879,6 @@
             "signal_threshold": 0.5
          }
       } ],
-      "auto_show": {
-         "enabled": false,
-         "fre_notification": {
-            "enabled": true,
-            "header": "We opened the news feed in this sidebar so you can continue browsing.",
-            "show_count": 3,
-            "text": "We opened the news feed in this sidebar so you can continue browsing."
-         },
-         "lifetime": "tab",
-         "lifetime|flight:msHubAppMsStartPerWindowAutoOpen": "window",
-         "remember_context": {
-            "time_to_live_sec": 86400
-         },
-         "settings_description": "Allows links from different Windows OS surfaces to open Microsoft Start in the sidebar when Microsoft Edge is launched.",
-         "settings_title": "Automatically open Microsoft Start in the sidebar"
-      },
       "capabilities": {
          "hide_navigation_buttons": true,
          "resize_disabled": true
@@ -2220,8 +1888,8 @@
       "flights": [ "msEdgeHubAppStart", "msEdgeTransientAppAutoOpen" ],
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_msstart_logo_dark.png/1.2.16/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_msstart_logo_light.png/1.2.16/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_msstart_logo_dark.png/1.2.17/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_msstart_logo_light.png/1.2.17/asset"
          }
       },
       "id": "b7a8e9f2-6b0d-4c5b-ae7d-8a6e1f2c7a6f",
@@ -2237,7 +1905,7 @@
          "url": "https://www.msn.com/widgets/fullpage/winWidgets/sidebar?experiences=WindowsWidgetsHub",
          "url|market:CN": "https://www.msn.cn/widgets/fullpage/winWidgets/sidebar?experiences=WindowsWidgetsHub"
       },
-      "version": "1.2.16"
+      "version": "1.2.17"
    }, {
       "capabilities": {
          "hide_navigation_buttons": true
@@ -2326,6 +1994,29 @@
       "preferred_side_pane_width": 376,
       "target": {
          "url": "https://www.bing.com/travelgrowthedge/sidebar.html"
+      },
+      "version": "1.0.0"
+   }, {
+      "default_locale": "en",
+      "description": "The Recommendations app provides fast and easy solutions for common browsing issues.",
+      "flights": [ "msEdgeEchoHubApp" ],
+      "icon": {
+         "raster_icon": {
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_wrench.png/1.0.0/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_wrench.png/1.0.0/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_wrench.png/1.0.0/asset"
+         }
+      },
+      "id": "694efa4f-a304-4214-aaf7-90444bc887f5",
+      "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiQTsrg0nIYfSUcSPPF8GQ63N/SdVrDv10Uk/6CMpmOiRH2vq/iTubZpAMQpiia2DDeYPS2jSm3X2hlbXe3UQ/4eHgTSgJL9PDjLuB8fo1E7vcs/JC/h8hIRNpCVVp322A8+pH9fkSU/NnICrI39QZR8BqoE+p86laYkpegXNLPs+Q7WuXnc8l8mebL1Hd2X/BN7lz12TZDbVMnW02CJKFk55XPzGnZEicZQNCkIQrxs03MW01jTp7X45Skg01H0QAuPrDlWGRb3BGhL5VCD1Nz//4rjPw1lnySSnuryPKYp/U2cuRM0immPhA3NhzO5lHT1uJTv+XRkDFv/0yVMYuwIDAQAB",
+      "locales": [ "en" ],
+      "manifest_version": 3,
+      "name": "Recommendations",
+      "notifications": {
+         "enabled": true
+      },
+      "target": {
+         "url": "edge://echo"
       },
       "version": "1.0.0"
    } ],
