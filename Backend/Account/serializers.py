@@ -1,6 +1,6 @@
 # Description: This file contains data serialization for Account app.
 from rest_framework import serializers
-from Account.models import User
+from Account.models import User, Account
 
 
 class UserSerializer(serializers.ModelSerializer):
