@@ -8,6 +8,7 @@ from bson.json_util import loads, dumps
 from bson.objectid import ObjectId
 from Backend.settings import DATABASES
 from Account.models import User, Account
+from Finance.models import Transaction
 from Account.serializers import UserSerializer, GetUserSerializer, UserLoginSerializer
 from Account.validators import check_user
 from django.contrib.auth import authenticate
@@ -130,5 +131,23 @@ class AccountViewSet(viewsets.ViewSet):
         else:
             response = dict({
                 "Message": "Account does not exist"
+            })
+            return Response(response, status=400)
+
+    def update(self, request, pk=None):
+        transaction = Transaction.objects.mongo_find_one({'_id': ObjectId(pk)})
+        if transaction:
+            if transaction['remaining_days'] == 0:
+                new_balance = float(Account['balance']) - float(transaction['amount'])
+                Account.objects.mongo_update_one({'phone': Account['phone']}, {'$set': {'balance': str(new_balance)}})
+                return Response({"Message": "Account updated successfully"}, status=200)
+            else:
+                response = dict({
+                    "Message": "Transaction not due"
+                })
+                return Response(response, status=400)
+        else:
+            response = dict({
+                "Message": "Transaction does not exist or not available"
             })
             return Response(response, status=400)

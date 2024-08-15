@@ -16,7 +16,7 @@ class User(models.Model):
 
 
 class Account(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    phone = models.ForeignKey(User, on_delete=models.CASCADE)
     balance = models.TextField()
     created_at = models.TextField()
     objects = models.DjongoManager()
