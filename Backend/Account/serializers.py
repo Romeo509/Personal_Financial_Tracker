@@ -27,4 +27,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
         if not user:
             raise serializers.ValidationError("Invalid phone or password")
         return data
-    
+
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ['username', 'balance', 'created_at']

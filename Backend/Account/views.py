@@ -115,3 +115,20 @@ class AccountViewSet(viewsets.ViewSet):
                 "Message": "User does not exist"
             })
             return Response(response, status=400)
+    
+    def update(self, request, pk=None):
+        phone = request.query_params.get('phone')
+        account = Account.objects.mongo_find_one({'phone': phone})
+        if account:
+            amount = json.loads(json.dumps(request.data))
+            new_balance = float(account['balance']) + float(amount['amount'])
+            Account.objects.mongo_update_one({'phone': phone}, {'$set': {'balance': str(new_balance)}})
+            response = dict({
+                "Message": "Account updated successfully"
+            })
+            return Response(response, status=200)
+        else:
+            response = dict({
+                "Message": "Account does not exist"
+            })
+            return Response(response, status=400)

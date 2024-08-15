@@ -7,3 +7,8 @@ class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
         fields = ['transaction', 'amount', 'created_at', 'deadline']
+
+class GetTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ['transaction', 'amount', 'created_at', 'deadline', 'remaining_days']
