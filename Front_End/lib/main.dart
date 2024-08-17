@@ -7,7 +7,7 @@ import 'mainPages/HomePage.dart';
 import 'mainPages/transactionsPage.dart';
 import 'mainPages/upcomingTransactionsPage.dart';
 import 'authPages/SignIn.dart';
-import 'authPages/SignUp.dart'; // Import SignUp
+
 
 void main() {
   runApp(const MyApp());
@@ -70,3 +70,4 @@ class _HomeNavigationPageState extends State<HomeNavigationPage> {
         ));
   }
 }
+

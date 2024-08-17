@@ -14,7 +14,7 @@ from Account.validators import check_user
 from django.contrib.auth import authenticate
 
 
-        
+
 class UserViewSet(viewsets.ViewSet):
     def create(self, request):
         data = json.loads(json.dumps(request.data))
@@ -75,13 +75,15 @@ class UserViewSet(viewsets.ViewSet):
             })
             return Response(response, status=400)
 
-    def login(self, request):
+
+class UserLoginViewSet(viewsets.ViewSet):
+    def create(self, request):
         data = json.loads(json.dumps(request.data))
-        user_login_serializer = UserLoginSerializer(data=data)
-        if user_login_serializer.is_valid():
+        serializer = UserLoginSerializer(data=data)
+        if serializer.is_valid():
             phone = data['phone']
             password = data['password']
-            user = User.objects.mongo_find_one({'phone': phone, 'password': password})
+            user = User.objects.mongo_find_one({'phone': phone}, {'password': password})
             if user:
                 response = dict({
                     "Message": "User logged in successfully"
@@ -89,7 +91,7 @@ class UserViewSet(viewsets.ViewSet):
                 return Response(response, status=200)
             else:
                 response = dict({
-                    "Message": "Invalid phone or password"
+                    "Message": "User doesn't exist"
                 })
                 return Response(response, status=400)
         else:
@@ -97,6 +99,10 @@ class UserViewSet(viewsets.ViewSet):
                 "Message": "Invalid data"
             })
             return Response(response, status=400)
+
+class UserLogoutViewSet(viewsets.ViewSet):
+    def create(self, request):
+        pass
 
 
 class AccountViewSet(viewsets.ViewSet):

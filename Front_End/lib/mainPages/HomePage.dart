@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:moneyapp_speed_code/mainPages/AccountPage.dart';
 import 'package:moneyapp_speed_code/mainPages/transactionsPage.dart';
 import 'package:moneyapp_speed_code/mainPages/upcomingTransactionsPage.dart';
 
@@ -203,7 +204,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          CalendarWeeklyView()
+          CalendarWeeklyView(),
         ],
       ),
     ]));

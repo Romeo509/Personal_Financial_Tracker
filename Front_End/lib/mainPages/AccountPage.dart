@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, file_names
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:moneyapp_speed_code/authPages/SignIn.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -58,56 +60,61 @@ class _AccountPageState extends State<AccountPage> {
             child: Column(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                ListTile(
-                  leading: Icon(
-                    Icons.person,
-                    size: 22,
-                    color: Colors.greenAccent,
+                Card(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.person,
+                      size: 22,
+                      color: Colors.greenAccent,
+                    ),
+                    title: Text("My Account"),
+                    trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  title: Text("My Account"),
-                  trailing: Icon(Icons.arrow_forward_ios),
                 ),
-                Divider(),
-                ListTile(
-                  leading: Icon(
-                    Icons.payment_outlined,
-                    size: 22,
-                    color: Colors.greenAccent,
+                Card(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.payment_outlined,
+                      size: 22,
+                      color: Colors.greenAccent,
+                    ),
+                    title: Text("My Banking Details"),
+                    trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  title: Text("My Banking Details"),
-                  trailing: Icon(Icons.arrow_forward_ios),
                 ),
-                Divider(),
-                ListTile(
-                  leading: Icon(
-                    Icons.loyalty,
-                    size: 22,
-                    color: Colors.greenAccent,
+                Card(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.loyalty,
+                      size: 22,
+                      color: Colors.greenAccent,
+                    ),
+                    title: Text("My Subscription"),
+                    trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  title: Text("My Subscription"),
-                  trailing: Icon(Icons.arrow_forward_ios),
                 ),
-                Divider(),
-                ListTile(
-                  leading: Icon(
-                    Icons.group,
-                    size: 22,
-                    color: Colors.greenAccent,
+                Card(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.group,
+                      size: 22,
+                      color: Colors.greenAccent,
+                    ),
+                    title: Text("Referrer Program"),
+                    trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  title: Text("Referrer Program"),
-                  trailing: Icon(Icons.arrow_forward_ios),
                 ),
-                Divider(),
-                ListTile(
-                  leading: Icon(
-                    Icons.question_answer,
-                    size: 22,
-                    color: Colors.greenAccent,
+                Card(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.question_answer,
+                      size: 22,
+                      color: Colors.greenAccent,
+                    ),
+                    title: Text("FAQs"),
+                    trailing: Icon(Icons.question_mark),
                   ),
-                  title: Text("FAQs"),
-                  trailing: Icon(Icons.question_mark),
                 ),
-                Divider(),
               ],
             ),
           ),
@@ -120,7 +127,11 @@ class _AccountPageState extends State<AccountPage> {
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.redAccent)),
-              onPressed: () {},
+              onPressed: () async {
+                final dio = Dio();
+                var logout = await dio.post('path');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+              },
               child: Text(
                 "Log Out",
                 style: TextStyle(color: Colors.white),
