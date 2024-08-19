@@ -30,12 +30,11 @@ class _SignInState extends State<SignIn> {
   void initState() {
     super.initState();
     getUser();
-    login();
   }
 
   void getUser() async {
     try {
-      var response = await Dio().get('http://192.168.100.22:8000/user/get/?phone=${phone.text}');
+      var response = await Dio().get('http://192.168.100.26:8000/user/get/?phone=${phone.text}');
       print(response);
       if (response.statusCode == 200) {
         setState(() {
@@ -46,18 +45,7 @@ class _SignInState extends State<SignIn> {
       print(err);
     }
   }
-  
-  void login() async {
-    try {
-      await Dio().post('http://192.168.100.22:8000/login/user/',
-      data: {
-        'phone': phone.text,
-        'password': password.text
-      });
-    } catch(err) {
-      print(err);
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -238,7 +226,15 @@ class _SignInState extends State<SignIn> {
                               onPressed: () async {
                                 final isValidForm = formKey.currentState!.validate();
                                 if (isValidForm) {
-                                  login();
+                                  try {
+                                    await Dio().post('http://192.168.100.26:8000/login/user/',
+                                        data: {
+                                          'phone': phone.text,
+                                          'password': password.text
+                                        });
+                                  } catch(err) {
+                                    print(err);
+                                  }
                                   getUser();
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage()));
                                 }
