@@ -53,13 +53,13 @@ List upcomingTransactions = [
   ],
   [
     const Icon(
-      Icons.face,
+      Icons.fitness_center,
       color: Colors.purple,
       size: 40,
     ),
     "-\$89.32",
     DateTime(2022, 10, 24),
-    "Makeup"
+    "Fitness"
   ],
   [
     const Icon(
