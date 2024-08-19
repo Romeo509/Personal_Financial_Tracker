@@ -128,9 +128,15 @@ class _AccountPageState extends State<AccountPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.redAccent)),
               onPressed: () async {
-                final dio = Dio();
-                var logout = await dio.post('path');
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+                try {
+                  await Dio().post('http://192.168.100.26:8000/logout/user/',
+                  data: {
+                    'phone': ''
+                  });
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+                } catch (err) {
+                  print(err);
+                }
               },
               child: Text(
                 "Log Out",

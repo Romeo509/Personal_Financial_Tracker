@@ -232,11 +232,11 @@ class _SignInState extends State<SignIn> {
                                           'phone': phone.text,
                                           'password': password.text
                                         });
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage()));
                                   } catch(err) {
                                     print(err);
                                   }
                                   getUser();
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage()));
                                 }
                               },
                               style: ElevatedButton.styleFrom(
