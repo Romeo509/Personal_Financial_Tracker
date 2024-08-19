@@ -16,11 +16,21 @@ class FinanceViewSet(viewsets.ViewSet):
         data['remaining_days'] = f"{remaining_days} days"
         transaction_serializer = TransactionSerializer(data=data)
         if transaction_serializer.is_valid():
-            Transaction.objects.mongo_insert_one(data)
-            response = dict({
-                "Message": "Transaction created successfully"
-            })
-            return Response(response, status=201)
+            transaction = Transaction.objects.mongo_find_one({'transaction': data['transaction'],
+                                                              'amount': data['amount'],
+                                                              'created_at': data['created_at'],
+                                                              'deadline': data['deadline']})
+            if not transaction:
+                Transaction.objects.mongo_insert_one(data)
+                response = dict({
+                    "Message": "Transaction created successfully"
+                })
+                return Response(response, status=201)
+            else:
+                response = dict({
+                    "Message": "Transaction already exists"
+                })
+                return Response(response, status=400)
         else:
             response = dict({
                 "Message": "Invalid data"

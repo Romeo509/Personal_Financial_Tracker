@@ -9,6 +9,7 @@ class User(models.Model):
     password = models.TextField()
     first_name = models.TextField()
     last_name = models.TextField()
+    session = models.TextField()
     objects = models.DjongoManager()
 
     def __str__(self):

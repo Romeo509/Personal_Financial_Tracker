@@ -23,7 +23,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
     def validate(self, data):
         phone = data.get('phone')
         password = data.get('password')
-        user = User.objects.mongo_find_one({'phone': phone, 'password': password})
+        user = User.objects.mongo_find_one({'phone': phone})
         if not user:
             raise serializers.ValidationError("Invalid phone or password")
         return data
@@ -31,4 +31,4 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['username', 'balance', 'created_at']
+        fields = ['phone', 'balance', 'created_at']
