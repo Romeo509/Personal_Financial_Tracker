@@ -9,6 +9,8 @@ class User(models.Model):
     password = models.TextField()
     first_name = models.TextField()
     last_name = models.TextField()
+    balance = models.TextField()
+    created_at = models.TextField()
     session = models.TextField()
     objects = models.DjongoManager()
 
@@ -16,11 +18,11 @@ class User(models.Model):
         return self.username
 
 
-class Account(models.Model):
-    phone = models.ForeignKey(User, on_delete=models.CASCADE)
-    balance = models.TextField()
-    created_at = models.TextField()
-    objects = models.DjongoManager()
+# class Account(models.Model):
+#     phone = models.ForeignKey(User, on_delete=models.CASCADE)
+#     balance = models.TextField()
+#     created_at = models.TextField()
+#     objects = models.DjongoManager()
 
-    def __str__(self):
-        return self.username
+#     def __str__(self):
+#         return self.username
