@@ -227,11 +227,14 @@ class _SignInState extends State<SignIn> {
                                 final isValidForm = formKey.currentState!.validate();
                                 if (isValidForm) {
                                   try {
-                                    await Dio().post('http://192.168.100.26:8000/login/user/',
+                                    final response = await Dio().post('http://192.168.100.26:8000/login/user/',
                                         data: {
                                           'phone': phone.text,
                                           'password': password.text
                                         });
+                                    if (response.statusCode == 200) {
+                                      print(response);
+                                    }
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage()));
                                   } catch(err) {
                                     print(err);

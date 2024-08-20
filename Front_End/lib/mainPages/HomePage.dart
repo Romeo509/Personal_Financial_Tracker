@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +20,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void getBalance() async {
+    final balance = await Dio().get('http://192.168.100.26:8000/account/');
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
