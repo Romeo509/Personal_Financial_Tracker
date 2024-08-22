@@ -1,0 +1,1 @@
+ /home/jaures/Documents/ALX_School/Personal_Financial_Tracker/Front_End/.dart_tool/flutter_build/58fe7f9451a7d51ffdf8539267b28a4c/native_assets.yaml: 

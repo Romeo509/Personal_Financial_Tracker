@@ -23,10 +23,10 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        HomePage(),
-        TransactionPage(),
-        PastTransactionsPage(),
-        AccountPage(),
+        const HomePage(),
+        const TransactionPage(),
+        const PastTransactionsPage(),
+        const AccountPage(),
       ][_currentIndex],
       bottomNavigationBar: navigationBar(),
     );

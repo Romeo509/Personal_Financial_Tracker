@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:moneyapp_speed_code/landingPage.dart';
 import 'SignUp.dart'; // Import the SignUp page
@@ -27,6 +29,7 @@ class _SignInState extends State<SignIn> {
 
   var userData = {};
 
+  @override
   void initState() {
     super.initState();
     getUser();
@@ -44,6 +47,9 @@ class _SignInState extends State<SignIn> {
     } catch(err) {
       print(err);
     }
+  }
+
+  void login() async {
   }
 
 
@@ -128,8 +134,8 @@ class _SignInState extends State<SignIn> {
                                    color: Colors.black45,
                                    fontSize: 19,
                                  ),
-                                 prefixIcon: Padding(
-                                   padding: const EdgeInsets.all(12.0),
+                                 prefixIcon: const Padding(
+                                   padding: EdgeInsets.all(12.0),
                                    child: Icon(
                                      Icons.phone,
                                      color: Colors.black45,
@@ -149,7 +155,7 @@ class _SignInState extends State<SignIn> {
                                },
                              )
                            ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
 
@@ -226,19 +232,7 @@ class _SignInState extends State<SignIn> {
                               onPressed: () async {
                                 final isValidForm = formKey.currentState!.validate();
                                 if (isValidForm) {
-                                  try {
-                                    final response = await Dio().post('http://192.168.100.26:8000/login/user/',
-                                        data: {
-                                          'phone': phone.text,
-                                          'password': password.text
-                                        });
-                                    if (response.statusCode == 200) {
-                                      print(response);
-                                    }
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage()));
-                                  } catch(err) {
-                                    print(err);
-                                  }
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LandingPage()));
                                   getUser();
                                 }
                               },

@@ -12,6 +12,8 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  var isLogin;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
