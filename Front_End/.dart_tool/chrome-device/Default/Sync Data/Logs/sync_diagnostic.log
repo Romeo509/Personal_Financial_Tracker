@@ -1,5 +1,0 @@
-2024-08-13T18:02:20.575Z P:1224 T:5084] SyncServiceImpl::Initialize,SyncState after the account was authenticated: NotSignedIn
-2024-08-13T18:23:00.217Z P:1972 T:10336] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
-2024-08-13T18:32:48.600Z P:10924 T:11668] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
-2024-08-13T20:27:47.527Z P:7392 T:11064] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
-2024-08-13T20:31:24.200Z P:10756 T:7700] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup

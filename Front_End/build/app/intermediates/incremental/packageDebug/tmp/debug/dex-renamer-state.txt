@@ -1,4 +1,0 @@
-#Mon Aug 19 17:37:20 WAT 2024
-base.0=/home/jaures/Documents/ALX_School/Personal_Financial_Tracker/Front_End/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
