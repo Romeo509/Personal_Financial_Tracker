@@ -141,7 +141,7 @@ class _AccountPageState extends State<AccountPage> {
                       WidgetStateProperty.all<Color>(Colors.redAccent)),
               onPressed: () async {
                 try {
-                  await Dio().post('http://192.168.100.26:8000/logout/user/',
+                  await Dio().post('http://192.168.100.33:8000/logout/user/',
                   data: {
                     'phone': ''
                   });

@@ -1,4 +1,61 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+
+class Transaction {
+  final String transaction;
+  final double amount;
+  final DateTime createdAt;
+  final DateTime deadline;
+  final int remainingDays;
+
+  const Transaction({
+    required this.transaction,
+    required this.amount,
+    required this.createdAt,
+    required this.deadline,
+    required this.remainingDays,
+  });
+
+  factory Transaction.fromJson(Map<String, dynamic> json) {
+    return Transaction(
+        transaction: json['transaction'] as String,
+        amount: json['amount'] as double,
+        createdAt: DateTime.parse(json['created_at']),
+        deadline: DateTime.parse(json['deadline']),
+        remainingDays: json['remaining_days'] as int,
+    );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'transaction': transaction,
+      'amount': amount,
+      'created_at': createdAt,
+      'deadline': deadline,
+      'remaining_days': remainingDays,
+    };
+  }
+
+  Future<List<Transaction>> retrieveTransactions(String apiUrl) async {
+    final response = await Dio().get(apiUrl);
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.data) as List<dynamic>;
+      return data.map((transactionData) => Transaction.fromJson(transactionData)).toList();
+    } else {
+      throw Exception('Failed to load transactions: ${response.statusCode}');
+    }
+  }
+
+  Future<void> getTransactions() async {
+    final apiUrl = 'http://192.168.100.33:8000/transactions/list/';
+    final transactions = await retrieveTransactions(apiUrl);
+    for (final transaction in transactions) {
+      print(transaction.toJson());
+    }
+  }
+}
 
 List upcomingTransactions = [
   [
