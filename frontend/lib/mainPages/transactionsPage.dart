@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import '../lists.dart';
 
 class PastTransactionsPage extends StatefulWidget {
-  const PastTransactionsPage({Key? key}) : super(key: key);
+  const PastTransactionsPage({super.key});
 
   @override
   State<PastTransactionsPage> createState() => _PastTransactionsPageState();

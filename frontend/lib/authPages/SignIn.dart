@@ -5,6 +5,7 @@ import 'package:frontend/landingPage.dart';
 import 'SignUp.dart'; // Import the SignUp page
 import 'package:dio/dio.dart';
 
+
 const Color backgroundColor2 = Color(0xFFEEEEEE);
 const Color backgroundColor4 = Color(0xFFB2DFDB);
 const Color textColor1 = Color(0xFF000000);
@@ -37,7 +38,7 @@ class _SignInState extends State<SignIn> {
 
   void getUser() async {
     try {
-      var response = await Dio().get('http://192.168.100.26:8000/user/get/?phone=${phone.text}');
+      var response = await Dio().get('http://192.168.100.33:8000/user/get/?phone=${phone.text}');
       print(response);
       if (response.statusCode == 200) {
         setState(() {
@@ -47,10 +48,6 @@ class _SignInState extends State<SignIn> {
     } catch(err) {
       print(err);
     }
-  }
-
-  void login() async {
-
   }
 
 
@@ -231,8 +228,14 @@ class _SignInState extends State<SignIn> {
                               onPressed: () async {
                                 final isValidForm = formKey.currentState!.validate();
                                 if (isValidForm) {
+                                  await Dio().post('http://192.168.100.33:8000/login/user/',
+                                  data: {
+                                    'phone': phone.text,
+                                    'password': password.text
+                                  });
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => const LandingPage()));
                                   getUser();
+
                                 }
                               },
                               style: ElevatedButton.styleFrom(

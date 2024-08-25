@@ -158,7 +158,7 @@ class _SignUpState extends State<SignUp> {
                               if (isValidForm) {
                                 try {
                                   await Dio().post(
-                                      'http://192.168.100.26:8000/signup/user/',
+                                      'http://192.168.100.33:8000/signup/user/',
                                       data: {
                                         'first_name': firstNameController.text,
                                         'last_name': lastNameController.text,
