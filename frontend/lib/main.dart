@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:frontend/mainPages/pastTransactionsPage.dart';
 
 import 'mainPages/AccountPage.dart';
 import 'mainPages/HomePage.dart';
-import 'mainPages/transactionsPage.dart';
 import 'mainPages/upcomingTransactionsPage.dart';
 import 'authPages/SignIn.dart';
 
@@ -40,8 +40,6 @@ class HomeNavigationPage extends StatefulWidget {
 class _HomeNavigationPageState extends State<HomeNavigationPage> {
   final screens = [
     HomePage(),
-    TransactionPage(),
-    PastTransactionsPage(),
     AccountPage(),
   ];
 

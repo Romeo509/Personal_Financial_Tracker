@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/mainPages/AccountPage.dart';
 import 'package:frontend/mainPages/HomePage.dart';
-import 'package:frontend/mainPages/transactionsPage.dart';
+import 'package:frontend/mainPages/pastTransactionsPage.dart';
 import 'package:frontend/mainPages/upcomingTransactionsPage.dart';
 
 
@@ -25,8 +25,6 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       body: [
         const HomePage(),
-        const TransactionPage(),
-        const PastTransactionsPage(),
         const AccountPage(),
       ][_currentIndex],
       bottomNavigationBar: navigationBar(),

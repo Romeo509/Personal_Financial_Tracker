@@ -17,8 +17,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void getBalance() async {
-    final balance = await Dio().get('http://192.168.100.26:8000/account/');
+  List<Transaction> models = [];
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> getTransactions() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      final transaction = await TransactionService.fetchTransactions();
+      setState(() {
+        models = transaction;
+        isLoading = false;
+      });
+    } catch (err) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -136,8 +157,9 @@ class _HomePageState extends State<HomePage> {
               height: 120,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: upcomingTransactions.length,
+                  itemCount: models.length,
                   itemBuilder: (context, int index) {
+                    final model = models[index];
                     return SizedBox(
                       height: 50,
                       width: 120,
@@ -153,16 +175,15 @@ class _HomePageState extends State<HomePage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                upcomingTransactions[index][0],
-                                Text(
-                                  upcomingTransactions[index][1],
+                                Text(model.transaction),
+                                Text(model.amount as String,
                                   style: TextStyle(
                                       color: Colors.greenAccent,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  "In ${upcomingTransactions[index][2].difference(DateTime.now()).inDays.toString()} days",
+                                  "In ${model.deadline}",
                                   style: TextStyle(
                                       color: Colors.grey[500],
                                       fontStyle: FontStyle.italic),
