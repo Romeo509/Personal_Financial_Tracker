@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => TransactionPage())));
+                            builder: ((context) => UpcomingTransactionsPage())));
                       },
                       child: Text(
                         "-\$540.26",

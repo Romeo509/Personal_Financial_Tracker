@@ -56,7 +56,7 @@ class TransactionService {
     }
   }
 
-  static (List<Transaction>, List<Transaction>) splitTransactions(List<Transaction> transactions) {
+  static List<List<Transaction>> splitTransactions(List<Transaction> transactions) {
     final now = DateTime.now();
     final pastTransactions = <Transaction>[];
     final upcomingTransactions = <Transaction>[];
@@ -69,6 +69,6 @@ class TransactionService {
         upcomingTransactions.add(transaction);
       }
     }
-    return (pastTransactions, upcomingTransactions);
+    return [pastTransactions, upcomingTransactions];
   }
 }
