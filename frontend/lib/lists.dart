@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class Transaction {
@@ -47,6 +49,7 @@ class TransactionService {
       final response = await Dio().get('http://192.168.100.33:8000/transactions/list/');
       if (response.statusCode == 200) {
         final data = response.data as List<dynamic>;
+        print(data);
         return data.map((item) => Transaction.fromJson(item)).toList();
       } else {
         throw Exception('Failed to load transactions');
@@ -70,5 +73,78 @@ class TransactionService {
       }
     }
     return [pastTransactions, upcomingTransactions];
+  }
+}
+
+
+class User {
+  final String username;
+  final String phone;
+  final String email;
+  final String password;
+  final String firstName;
+  final String lastName;
+  final DateTime createdAt;
+  final int balance;
+  
+  const User({
+    required this.username,
+    required this.phone,
+    required this.email,
+    required this.password,
+    required this.firstName,
+    required this.lastName,
+    required this.createdAt,
+    required this.balance,
+  });
+  
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        username: json['username'],
+        phone: json['phone'],
+        email: json['email'],
+        password: json['password'],
+        firstName: json['first_name'],
+        lastName: json['last_name'],
+        createdAt: json['created_at'],
+        balance: json['balance'],
+    );
+  }
+}
+
+class UserApiServices {
+  static Future<User?> getUser(int phone) async {
+    const apiUrl = 'http://192.168.100.33:8000/user/get/';
+    try {
+      final response = await Dio().get('$apiUrl?$phone');
+      if (response.statusCode == 200) {
+        final userData = response.data as Map<String, dynamic>;
+        return User.fromJson(userData);
+      }
+    } catch (err) {
+      rethrow;
+    }
+    return null;
+  }
+
+  static Future<User> loginUser()
+}
+
+class UserDataService {
+  static const String userKey = 'user';
+
+  static Future<void> saveUser(User, user) async {
+    final prefs = await SharedPreferences.getInstance();
+    final userJson = jsonEncode(user);
+    await prefs.setString(userKey, userJson);
+  }
+
+  static Future<User?> loadUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userJson = prefs.getString(userKey);
+    if (userJson != null) {
+      return User.fromJson(jsonDecode(userJson));
+    }
+    return null;
   }
 }

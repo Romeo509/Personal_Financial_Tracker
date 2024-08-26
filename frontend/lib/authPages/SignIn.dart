@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:frontend/landingPage.dart';
+import 'package:frontend/lists.dart';
 import 'SignUp.dart'; // Import the SignUp page
 import 'package:dio/dio.dart';
 
@@ -33,23 +34,17 @@ class _SignInState extends State<SignIn> {
   @override
   void initState() {
     super.initState();
-    getUser();
+    fetchUser();
   }
 
-  void getUser() async {
+  Future<void> fetchUser() async {
     try {
-      var response = await Dio().get('http://192.168.100.33:8000/user/get/?phone=${phone.text}');
-      print(response);
-      if (response.statusCode == 200) {
-        setState(() {
-          userData = response.data;
-        });
-      }
-    } catch(err) {
-      print(err);
+      final user = await UserApiServices.getUser(phone as int);
+      print(user);
+    } catch (err) {
+      throw('Not found');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -234,8 +229,6 @@ class _SignInState extends State<SignIn> {
                                     'password': password.text
                                   });
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => const LandingPage()));
-                                  getUser();
-
                                 }
                               },
                               style: ElevatedButton.styleFrom(
