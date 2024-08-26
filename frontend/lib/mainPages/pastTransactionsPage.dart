@@ -25,7 +25,7 @@ class _PastTransactionPageState extends State<PastTransactionPage> {
     try {
       final transactions = await TransactionService.fetchTransactions();
       final splitTransactions = TransactionService.splitTransactions(transactions);
-      pastTransactions = splitTransactions[0];
+      pastTransactions = splitTransactions[1];
       setState(() {
         isLoading = false;
       });

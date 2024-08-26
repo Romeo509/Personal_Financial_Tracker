@@ -44,7 +44,7 @@ class Transaction {
 class TransactionService {
   static Future<List<Transaction>> fetchTransactions() async {
     try {
-      final response = await Dio().get('path');
+      final response = await Dio().get('http://192.168.100.33:8000/transactions/list/');
       if (response.statusCode == 200) {
         final data = response.data as List<dynamic>;
         return data.map((item) => Transaction.fromJson(item)).toList();

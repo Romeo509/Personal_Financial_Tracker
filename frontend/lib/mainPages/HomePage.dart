@@ -385,6 +385,30 @@ class VerticalList extends StatefulWidget {
 }
 
 class _VerticalListState extends State<VerticalList> {
+  List<Transaction> pastTransactions = [];
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getTransactions();
+  }
+
+  Future<void> getTransactions() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      final transactions = await TransactionService.fetchTransactions();
+      final splitTransactions = TransactionService.splitTransactions(transactions);
+      pastTransactions = splitTransactions[0];
+      setState(() {
+        isLoading = false;
+      });
+    } catch (err) {
+      isLoading = false;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -394,6 +418,7 @@ class _VerticalListState extends State<VerticalList> {
         scrollDirection: Axis.vertical,
         itemCount: pastTransactions.length,
         itemBuilder: (context, int index) {
+          final pastTransaction = pastTransactions[index];
           return SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             child: ListTile(
@@ -401,14 +426,14 @@ class _VerticalListState extends State<VerticalList> {
                 side: const BorderSide(color: Colors.greenAccent, width: 0.25),
                 borderRadius: BorderRadius.circular(10),
               ),
-              leading: pastTransactions[index][0],
+              leading: Text(pastTransaction.transaction),
               title: Text(
-                pastTransactions[index][1],
+                pastTransaction.amount as String,
                 style: TextStyle(color: Colors.greenAccent),
               ),
-              subtitle: Text(pastTransactions[index][3]),
+              subtitle: Text(pastTransaction.remainingDays as String),
               trailing: Text(DateFormat.MMMMEEEEd()
-                  .format(pastTransactions[index][2])
+                  .format(pastTransaction.deadline)
                   .toString()),
             ),
           );

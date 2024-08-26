@@ -25,7 +25,7 @@ class _UpcomingTransactionsPageState extends State<UpcomingTransactionsPage> {
     try {
       final transactions = await TransactionService.fetchTransactions();
       final splitTransactions = TransactionService.splitTransactions(transactions);
-      upcomingTransactions = splitTransactions[1];
+      upcomingTransactions = splitTransactions[0];
       setState(() {
         isLoading = false;
       });

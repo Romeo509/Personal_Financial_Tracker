@@ -25,6 +25,8 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       body: [
         const HomePage(),
+        const PastTransactionPage(),
+        const UpcomingTransactionsPage(),
         const AccountPage(),
       ][_currentIndex],
       bottomNavigationBar: navigationBar(),
