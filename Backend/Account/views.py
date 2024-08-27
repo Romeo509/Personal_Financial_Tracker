@@ -70,7 +70,7 @@ class UserViewSet(viewsets.ViewSet):
             response = dict({
                 "Message": "User does not exist"
             })
-            return Response(response, status=400)
+            return Response(response, status=404)
 
 
 class UserLoginViewSet(viewsets.ViewSet):
@@ -96,7 +96,7 @@ class UserLoginViewSet(viewsets.ViewSet):
             response = dict({
                 "Message": "User does not exist"
             })
-            return Response(response, status=400)
+            return Response(response, status=404)
 
 class UserLogoutViewSet(viewsets.ViewSet):
     def create(self, request):

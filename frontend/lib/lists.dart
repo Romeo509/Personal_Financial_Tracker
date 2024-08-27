@@ -1,7 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,7 +45,7 @@ class Transaction {
 class TransactionService {
   static Future<List<Transaction>> fetchTransactions() async {
     try {
-      final response = await Dio().get('http://192.168.100.33:8000/transactions/list/');
+      final response = await Dio().get('http://192.168.1.118:8000/transactions/list/');
       if (response.statusCode == 200) {
         final data = response.data as List<dynamic>;
         print(data);
@@ -100,7 +99,7 @@ class User {
   
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        username: json['username'],
+        username: json['username'] as String,
         phone: json['phone'],
         email: json['email'],
         password: json['password'],
@@ -110,13 +109,25 @@ class User {
         balance: json['balance'],
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'username': username,
+      'phone': phone,
+      'email': email,
+      'password': password,
+      'first_name': firstName,
+      'last_name': lastName,
+      'created_at': createdAt,
+      'balance': balance
+    };
+  }
 }
 
 class UserApiServices {
-  static Future<User?> getUser(int phone) async {
-    const apiUrl = 'http://192.168.100.33:8000/user/get/';
+  static Future<User?> getUser(phone) async {
+    const apiUrl = 'http://192.168.1.118:8000/user/get/?phone=';
     try {
-      final response = await Dio().get('$apiUrl?$phone');
+      final response = await Dio().get('$apiUrl$phone');
       if (response.statusCode == 200) {
         final userData = response.data as Map<String, dynamic>;
         return User.fromJson(userData);
@@ -127,13 +138,41 @@ class UserApiServices {
     return null;
   }
 
-  static Future<User> loginUser()
-}
+  static Future<User?> loginUser(String phone, String password) async {
+      final response = await Dio().post('http://192.168.1.118:8000/login/user/',
+          data: {
+            'phone': phone,
+            'password': password,
+          }
+      );
+      if (response.statusCode == 200) {
+        final data = response.data as Map<String, dynamic>;
+        return User.fromJson(data);
+      }
+      return null;
+  }
 
+  static Future<User> logoutUser(String phone) async {
+    try {
+      final response = await Dio().post('http://192.168.1.118:8000/logout/user/',
+      data: {
+        'phone': phone.toString(),
+      });
+      if (response.statusCode == 200) {
+      } else {
+        throw Exception('Logout failed');
+      }
+    } catch (err) {
+      rethrow;
+    }
+    throw Exception('Failed');
+  }
+}
 class UserDataService {
   static const String userKey = 'user';
+  static const String phoneKeyNumber = 'phoneNumber';
 
-  static Future<void> saveUser(User, user) async {
+  static Future<void> saveUser(user) async {
     final prefs = await SharedPreferences.getInstance();
     final userJson = jsonEncode(user);
     await prefs.setString(userKey, userJson);
@@ -146,5 +185,15 @@ class UserDataService {
       return User.fromJson(jsonDecode(userJson));
     }
     return null;
+  }
+
+  static Future<void> savePhoneNumber(String phoneNumber) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(phoneNumber, phoneNumber);
+  }
+
+  static Future<String?> getPhoneNumber() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(phoneKeyNumber);
   }
 }

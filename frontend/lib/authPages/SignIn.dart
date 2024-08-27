@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+/*import 'package:dio/dio.dart';*/
 import 'package:flutter/material.dart';
-import 'package:frontend/landingPage.dart';
 import 'package:frontend/lists.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'SignUp.dart'; // Import the SignUp page
-import 'package:dio/dio.dart';
 
 
 const Color backgroundColor2 = Color(0xFFEEEEEE);
@@ -28,24 +28,33 @@ class _SignInState extends State<SignIn> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController password = TextEditingController();
   TextEditingController phone = TextEditingController();
-
-  var userData = {};
+  bool isLogin = false;
 
   @override
   void initState() {
     super.initState();
     fetchUser();
+    handleLogin(phone.text, password.text);
   }
 
   Future<void> fetchUser() async {
     try {
-      final user = await UserApiServices.getUser(phone as int);
+      final user = await UserApiServices.getUser(phone.text);
       print(user);
     } catch (err) {
-      throw('Not found');
+      print(err);
     }
   }
 
+  Future<void> handleLogin(String phone, String password) async {
+    final user = await UserApiServices.loginUser(phone, password);
+    await UserDataService.saveUser(user);
+    Navigator.pushNamed(context, '/landingPage');
+  }
+  Future<void> savePhoneNumber() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('phone', phone.text);
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -223,13 +232,28 @@ class _SignInState extends State<SignIn> {
                               onPressed: () async {
                                 final isValidForm = formKey.currentState!.validate();
                                 if (isValidForm) {
-                                  await Dio().post('http://192.168.100.33:8000/login/user/',
+                                  handleLogin(phone.text, password.text);
+                                  fetchUser();
+                                }
+                                /*if (isValidForm) {
+                                  final response = await Dio().post('http://192.168.1.118:8000/login/user/',
                                   data: {
                                     'phone': phone.text,
                                     'password': password.text
                                   });
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LandingPage()));
-                                }
+                                  if (response.statusCode == 200) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Login Successful'))
+                                    );
+                                    savePhoneNumber();
+                                    fetchUser();
+                                    Navigator.pushNamed(context, '/landingPage');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Login failed'))
+                                    );
+                                  }
+                                }*/
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: buttonColor,
