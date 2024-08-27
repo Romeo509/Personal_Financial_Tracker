@@ -1,0 +1,85 @@
+/* static/css/expense_history.css */
+
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+.header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    padding: 15px;
+}
+
+.navbar-brand {
+    color: #007bff;
+}
+
+.navbar-nav .nav-item .nav-link .btn {
+    border: 1px solid #007bff;
+    color: #007bff;
+    background-color: transparent;
+    border-radius: 50px;
+    padding: 8px 16px;
+    margin: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-nav .nav-item .nav-link .btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.glassmorphic-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.expense-history-header {
+    padding: 20px;
+    color: #212529;
+    text-align: center;
+}
+
+.expense-history-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.expense-history-header p {
+    font-size: 1rem;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table {
+    color: #212529;
+}
+
+.table-light {
+    background-color: #ffffff;
+}
+
+.table-light thead th {
+    background-color: #f1f1f1;
+}
+
+.table-light tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.btn-primary {
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}

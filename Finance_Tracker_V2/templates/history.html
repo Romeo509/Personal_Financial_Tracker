@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/expense_history.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="#">Financial Tracker</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('index') }}">
+                                <button class="btn btn-outline-primary">Dashboard</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('manage_expenses') }}">
+                                <button class="btn btn-outline-primary">Manage Expenses</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('add_expense') }}">
+                                <button class="btn btn-outline-primary">Add Expense</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('history') }}">
+                                <button class="btn btn-outline-primary">Expense History</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('account') }}">
+                                <button class="btn btn-outline-primary">Account Settings</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container mt-4">
+        <div class="card glassmorphic-card">
+            <div class="card-body">
+                <header class="expense-history-header">
+                    <h1>Expense History</h1>
+                    <p>Review your past expenses below.</p>
+                </header>
+
+                <!-- Expenses Table -->
+                <div class="table-responsive">
+                    <table class="table table-light table-hover expense-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Food</td>
+                                <td>$123.45</td>
+                                <td>2024-08-01</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Transport</td>
+                                <td>$67.89</td>
+                                <td>2024-07-15</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Entertainment</td>
+                                <td>$234.56</td>
+                                <td>2024-07-10</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Utilities</td>
+                                <td>$89.01</td>
+                                <td>2024-06-20</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Rent</td>
+                                <td>$1200.00</td>
+                                <td>2024-05-01</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Food</td>
+                                <td>$56.78</td>
+                                <td>2024-04-10</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Transport</td>
+                                <td>$45.67</td>
+                                <td>2024-03-15</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Entertainment</td>
+                                <td>$78.90</td>
+                                <td>2024-02-25</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Utilities</td>
+                                <td>$101.12</td>
+                                <td>2024-01-10</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Rent</td>
+                                <td>$1200.00</td>
+                                <td>2023-12-01</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Navigation Button -->
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
