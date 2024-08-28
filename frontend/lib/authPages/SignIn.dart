@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
-
 /*import 'package:dio/dio.dart';*/
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/lists.dart';
+import 'package:frontend/data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'SignUp.dart'; // Import the SignUp page
 
@@ -231,11 +231,11 @@ class _SignInState extends State<SignIn> {
                             ElevatedButton(
                               onPressed: () async {
                                 final isValidForm = formKey.currentState!.validate();
-                                if (isValidForm) {
+                                /*if (isValidForm) {
                                   handleLogin(phone.text, password.text);
                                   fetchUser();
-                                }
-                                /*if (isValidForm) {
+                                }*/
+                                if (isValidForm) {
                                   final response = await Dio().post('http://192.168.1.118:8000/login/user/',
                                   data: {
                                     'phone': phone.text,
@@ -253,7 +253,7 @@ class _SignInState extends State<SignIn> {
                                       const SnackBar(content: Text('Login failed'))
                                     );
                                   }
-                                }*/
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: buttonColor,

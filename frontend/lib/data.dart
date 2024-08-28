@@ -154,10 +154,7 @@ class UserApiServices {
 
   static Future<User> logoutUser(String phone) async {
     try {
-      final response = await Dio().post('http://192.168.1.118:8000/logout/user/',
-      data: {
-        'phone': phone.toString(),
-      });
+      final response = await Dio().post('http://192.168.1.118:8000/logout/user/');
       if (response.statusCode == 200) {
       } else {
         throw Exception('Logout failed');

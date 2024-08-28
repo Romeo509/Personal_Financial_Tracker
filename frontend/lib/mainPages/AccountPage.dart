@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, file_names
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/lists.dart';
+import 'package:frontend/data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -166,7 +166,8 @@ class _AccountPageState extends State<AccountPage> {
                       WidgetStateProperty.all<Color>(Colors.redAccent)),
               onPressed: () async {
                 try {
-                  final response = await Dio().post('http://192.168.1.118:8000/logout/user/',
+                  handleLogout();
+                  /*final response = await Dio().post('http://192.168.1.118:8000/logout/user/',
                   data: {
                     'phone': phoneNumberKey,
                   });
@@ -174,7 +175,7 @@ class _AccountPageState extends State<AccountPage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Logout sucessful'))
                     );
-                  }
+                  }*/
                   Navigator.pushNamed(context, '/signin');
                 } catch (err) {
                   print(err);

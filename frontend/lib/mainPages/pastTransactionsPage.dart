@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/lists.dart';
+import 'package:frontend/data.dart';
+
 
 class PastTransactionPage extends StatefulWidget {
   const PastTransactionPage({super.key});

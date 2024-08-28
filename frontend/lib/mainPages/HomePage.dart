@@ -3,11 +3,10 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/data.dart';
 import 'package:frontend/mainPages/upcomingTransactionsPage.dart';
 import 'package:intl/intl.dart';
 
-
-import '../lists.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
