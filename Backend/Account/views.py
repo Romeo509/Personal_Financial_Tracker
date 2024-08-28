@@ -42,24 +42,18 @@ class UserViewSet(viewsets.ViewSet):
                 "Message": "Invalid data"
             })
             return Response(response, status=400)
-    
+
     def update(self, request, pk=None):
         phone = request.query_params.get('phone')
         user = User.objects.mongo_find_one({'phone': phone})
         if user:
-            data = json.loads(json.dumps(request.data))
-            user_serializer = UserSerializer(data=data)
-            if user_serializer.is_valid():
-                User.objects.mongo_update_one({'phone': phone}, {'$set': data})
-                response = dict({
-                    "Message": "User updated successfully"
-                })
-                return Response(response, status=200)
-            else:
-                response = dict({
-                    "Message": "Invalid data"
-                })
-                return Response(response, status=400)
+            amount = json.loads(json.dumps(request.data))['amount']
+            new_balance = int(user['balance']) + int(amount)
+            User.objects.mongo_update_one({'phone': phone}, {'$set': {'balance': new_balance}})
+            response = dict({
+                "Message": "Balance updated successfully"
+            })
+            return Response(response, status=200)
         else:
             response = dict({
                 "Message": "User does not exist"
@@ -76,25 +70,7 @@ class UserViewSet(viewsets.ViewSet):
             response = dict({
                 "Message": "User does not exist"
             })
-            return Response(response, status=400)
-    
-    def add_balance(self, request, pk=None):
-        # update user balance
-        phone = request.query_params.get('phone')
-        user = User.objects.mongo_find_one({'phone': phone})
-        if user:
-            amount = json.loads(json.dumps(request.data))
-            new_balance = int(user['balance']) + int(amount)
-            User.objects.mongo_update_one({'phone': phone}, {'$set': {'balance': new_balance}})
-            response = dict({
-                "Message": "Balance updated successfully"
-            })
-            return Response(response, status=200)
-        else:
-            response = dict({
-                "Message": "User does not exist"
-            })
-            return Response(response, status=400)
+            return Response(response, status=404)
 
 
 class UserLoginViewSet(viewsets.ViewSet):
@@ -120,7 +96,7 @@ class UserLoginViewSet(viewsets.ViewSet):
             response = dict({
                 "Message": "User does not exist"
             })
-            return Response(response, status=400)
+            return Response(response, status=404)
 
 class UserLogoutViewSet(viewsets.ViewSet):
     def create(self, request):

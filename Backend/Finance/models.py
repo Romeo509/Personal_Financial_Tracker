@@ -8,6 +8,7 @@ class Transaction(models.Model):
     created_at = models.TextField()
     deadline = models.TextField()
     remaining_days = models.TextField(default=None)
+    status = models.TextField(default=None)
     objects = models.DjongoManager()
 
     def __str__(self):

@@ -14,6 +14,8 @@ class FinanceViewSet(viewsets.ViewSet):
         data = json.loads(json.dumps(request.data))
         remaining_days = (datetime.datetime.strptime(data['deadline'], '%Y-%m-%d') - datetime.datetime.strptime(data['created_at'], '%Y-%m-%d')).days
         data['remaining_days'] = f"{remaining_days} days"
+        status = 'Upcoming'
+        data['status'] = status
         transaction_serializer = TransactionSerializer(data=data)
         if transaction_serializer.is_valid():
             transaction = Transaction.objects.mongo_find_one({'transaction': data['transaction'],
@@ -22,6 +24,7 @@ class FinanceViewSet(viewsets.ViewSet):
                                                               'deadline': data['deadline']})
             if not transaction:
                 Transaction.objects.mongo_insert_one(data)
+                
                 response = dict({
                     "Message": "Transaction created successfully"
                 })
@@ -39,6 +42,9 @@ class FinanceViewSet(viewsets.ViewSet):
     
     def update(self, request, pk=None):
         remaining_days = Transaction.objects.mongo_find_one({'remaining_days': remaining_days})
+        if remaining_days == 0:
+            Transaction.objects.mongo_update_one({'status': 'Completed'})
+            return Response({"Message": "Transaction completed successfully"}, status=200)
         for day in remaining_days:
             day = int(day)
             if day == 0:

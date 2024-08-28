@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:frontend/data.dart';
 
 
-class UpcomingTransactionsPage extends StatefulWidget {
-  const UpcomingTransactionsPage({super.key});
+class PastTransactionPage extends StatefulWidget {
+  const PastTransactionPage({super.key});
 
   @override
-  State<UpcomingTransactionsPage> createState() => _UpcomingTransactionsPageState();
+  State<PastTransactionPage> createState() => _PastTransactionPageState();
 }
 
-class _UpcomingTransactionsPageState extends State<UpcomingTransactionsPage> {
-  List<Transaction> upcomingTransactions = [];
+class _PastTransactionPageState extends State<PastTransactionPage> {
+  List<Transaction> pastTransactions = [];
   bool isLoading = false;
 
   @override
@@ -26,7 +26,7 @@ class _UpcomingTransactionsPageState extends State<UpcomingTransactionsPage> {
     try {
       final transactions = await TransactionService.fetchTransactions();
       final splitTransactions = TransactionService.splitTransactions(transactions);
-      upcomingTransactions = splitTransactions[0];
+      pastTransactions = splitTransactions[1];
       setState(() {
         isLoading = false;
       });
@@ -39,16 +39,16 @@ class _UpcomingTransactionsPageState extends State<UpcomingTransactionsPage> {
     return Scaffold(
       body: isLoading
           ? const Center(
-        child: CircularProgressIndicator())
-      : ListView.builder(
-        itemCount: upcomingTransactions.length,
+          child: CircularProgressIndicator())
+          : ListView.builder(
+        itemCount: pastTransactions.length,
         itemBuilder: (context, index) {
-        final transaction = upcomingTransactions[index];
-        return ListTile(
-          title: Text(transaction.transaction),
-          subtitle: Text('Amount: ${transaction.amount}'),
-        );
-      },
+          final transaction = pastTransactions[index];
+          return ListTile(
+            title: Text(transaction.transaction),
+            subtitle: Text('Amount: ${transaction.amount}'),
+          );
+        },
       ),
     );
   }

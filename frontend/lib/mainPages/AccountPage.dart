@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, file_names
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/authPages/SignIn.dart';
+import 'package:frontend/data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class AccountPage extends StatefulWidget {
@@ -12,7 +13,31 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  var isLogin;
+  static const phoneNumberKey = 'phoneNumberKey';
+
+  void iniState() {
+    super.initState();
+  }
+
+  Future<void> handleLogout() async {
+    final phone = await UserDataService.getPhoneNumber();
+    if (phone != null) {
+      try {
+        await UserApiServices.logoutUser(phone);
+      } catch (err) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('logout failed')));
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You are not logged in'))
+      );
+    }
+  }
+  void getPhoneNumber() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.getString(phoneNumberKey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,11 +166,17 @@ class _AccountPageState extends State<AccountPage> {
                       WidgetStateProperty.all<Color>(Colors.redAccent)),
               onPressed: () async {
                 try {
-                  await Dio().post('http://192.168.100.33:8000/logout/user/',
+                  handleLogout();
+                  /*final response = await Dio().post('http://192.168.1.118:8000/logout/user/',
                   data: {
-                    'phone': ''
+                    'phone': phoneNumberKey,
                   });
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+                  if (response.statusCode == 200) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Logout sucessful'))
+                    );
+                  }*/
+                  Navigator.pushNamed(context, '/signin');
                 } catch (err) {
                   print(err);
                 }

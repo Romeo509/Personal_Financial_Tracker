@@ -8,9 +8,8 @@ router = DefaultRouter()
 app_name = 'Account'
 
 router.register(r'user', UserViewSet, basename='user')
-router.register(r'user/update', UserViewSet, basename='user_update')
+router.register(r'user/update_balance', UserViewSet, basename='user_update')
 router.register(r'user/get', UserViewSet, basename='user_get')
-router.register(r'user/add_balance', UserViewSet, basename='user_add_balance')
 router.register(r'login/user', UserLoginViewSet, basename='user_login')
 router.register(r'logout/user', UserLogoutViewSet, basename='user_logout')
 

@@ -3,11 +3,10 @@ import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/data.dart';
 import 'package:frontend/mainPages/upcomingTransactionsPage.dart';
 import 'package:intl/intl.dart';
 
-
-import '../lists.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,8 +16,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void getBalance() async {
-    final balance = await Dio().get('http://192.168.100.26:8000/account/');
+  List<Transaction> models = [];
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> getTransactions() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      final transaction = await TransactionService.fetchTransactions();
+      setState(() {
+        models = transaction;
+        isLoading = false;
+      });
+    } catch (err) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -112,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => TransactionPage())));
+                            builder: ((context) => UpcomingTransactionsPage())));
                       },
                       child: Text(
                         "-\$540.26",
@@ -136,8 +156,9 @@ class _HomePageState extends State<HomePage> {
               height: 120,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: upcomingTransactions.length,
+                  itemCount: models.length,
                   itemBuilder: (context, int index) {
+                    final model = models[index];
                     return SizedBox(
                       height: 50,
                       width: 120,
@@ -153,16 +174,15 @@ class _HomePageState extends State<HomePage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                upcomingTransactions[index][0],
-                                Text(
-                                  upcomingTransactions[index][1],
+                                Text(model.transaction),
+                                Text(model.amount as String,
                                   style: TextStyle(
                                       color: Colors.greenAccent,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  "In ${upcomingTransactions[index][2].difference(DateTime.now()).inDays.toString()} days",
+                                  "In ${model.deadline}",
                                   style: TextStyle(
                                       color: Colors.grey[500],
                                       fontStyle: FontStyle.italic),
@@ -364,6 +384,30 @@ class VerticalList extends StatefulWidget {
 }
 
 class _VerticalListState extends State<VerticalList> {
+  List<Transaction> pastTransactions = [];
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getTransactions();
+  }
+
+  Future<void> getTransactions() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      final transactions = await TransactionService.fetchTransactions();
+      final splitTransactions = TransactionService.splitTransactions(transactions);
+      pastTransactions = splitTransactions[0];
+      setState(() {
+        isLoading = false;
+      });
+    } catch (err) {
+      isLoading = false;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -373,6 +417,7 @@ class _VerticalListState extends State<VerticalList> {
         scrollDirection: Axis.vertical,
         itemCount: pastTransactions.length,
         itemBuilder: (context, int index) {
+          final pastTransaction = pastTransactions[index];
           return SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             child: ListTile(
@@ -380,14 +425,14 @@ class _VerticalListState extends State<VerticalList> {
                 side: const BorderSide(color: Colors.greenAccent, width: 0.25),
                 borderRadius: BorderRadius.circular(10),
               ),
-              leading: pastTransactions[index][0],
+              leading: Text(pastTransaction.transaction),
               title: Text(
-                pastTransactions[index][1],
+                pastTransaction.amount as String,
                 style: TextStyle(color: Colors.greenAccent),
               ),
-              subtitle: Text(pastTransactions[index][3]),
+              subtitle: Text(pastTransaction.remainingDays as String),
               trailing: Text(DateFormat.MMMMEEEEd()
-                  .format(pastTransactions[index][2])
+                  .format(pastTransaction.deadline)
                   .toString()),
             ),
           );

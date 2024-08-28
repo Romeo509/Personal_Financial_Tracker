@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-
+import 'package:frontend/landingPage.dart';
 import 'mainPages/AccountPage.dart';
 import 'mainPages/HomePage.dart';
-import 'mainPages/transactionsPage.dart';
-import 'mainPages/upcomingTransactionsPage.dart';
 import 'authPages/SignIn.dart';
 
 
@@ -25,6 +23,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lightGreen,
       ),
       home: SignIn(),
+      routes: <String, WidgetBuilder>{
+        '/landingPage': (context) => const LandingPage(),
+        '/signin': (context) => const SignIn(),
+      },
     );
   }
 }
@@ -40,8 +42,6 @@ class HomeNavigationPage extends StatefulWidget {
 class _HomeNavigationPageState extends State<HomeNavigationPage> {
   final screens = [
     HomePage(),
-    TransactionPage(),
-    PastTransactionsPage(),
     AccountPage(),
   ];
 
