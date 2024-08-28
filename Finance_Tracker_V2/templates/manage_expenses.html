@@ -27,11 +27,7 @@
                                 <button class="btn btn-outline-primary">Manage Expenses</button>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('add_expense') }}">
-                                <button class="btn btn-outline-primary">Add Expense</button>
-                            </a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('history') }}">
                                 <button class="btn btn-outline-primary">Expense History</button>
@@ -68,24 +64,28 @@
                         </header>
 
                         <!-- New Expense Form -->
-                        <div class="mb-4">
-                            <h3>Add New Expense</h3>
-                            <form action="{{ url_for('add_expense') }}" method="post">
-                                <div class="form-group">
-                                    <label for="category">Category</label>
-                                    <input type="text" class="form-control" id="category" name="category" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="amount">Amount</label>
-                                    <input type="number" step="0.01" class="form-control" id="amount" name="amount" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="date">Date</label>
-                                    <input type="date" class="form-control" id="date" name="date" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Add Expense</button>
-                            </form>
-                        </div>
+                        <!-- New Expense Form -->
+<div class="mb-4">
+    <h3>Add New Expense</h3>
+    <form action="{{ url_for('add_expense') }}" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="category">Category</label>
+                <input type="text" class="form-control" id="category" name="category" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="amount">Amount</label>
+                <input type="number" step="0.01" class="form-control" id="amount" name="amount" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+    </form>
+</div>
+
 
                         <!-- Expenses Table -->
                         <div class="card glassmorphic-card">
